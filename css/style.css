@@ -97,19 +97,20 @@ main {
 }
 
 .lista_produtos {
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 32px;
 }
 
 .card__produtos {
-  width: 384px;
+  width: 336px;
   height: 326px;
+  flex-basis: 336px;
 }
 
 .card__produtos figure {
@@ -141,4 +142,32 @@ main {
   font-size: 18px;
   line-height: 28px;
   font-family: "Space Grotesk", sans-serif;
+}
+
+/* RESPONSIVIDADE*/
+@media (max-width: 768px) {
+  .top_fixed {
+    height: 41px;
+    font-size: 16px;
+  }
+
+  .hero {
+    height: 350px;
+  }
+
+  .hero__content h1 {
+    font-size: 18px;
+  }
+
+  .hero__content h2 {
+    font-size: 24px;
+  }
+
+  .hero__content p {
+    font-size: 18px;
+    line-height: 28px;
+  }
+}
+
+@media (max-width: 375px) {
 }
