@@ -1,3 +1,5 @@
+@import url("produto__detalhes.css");
+
 :root {
   --brand_color: #7ca2f4;
   --dark: #121214;
@@ -68,6 +70,7 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
 }
 
 .produtos {

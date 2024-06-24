@@ -1,3 +1,12 @@
+// FUNÇÃO PARA FORMATAR OS VALORES DOS TENIS NO PADRÃO BRASILEIRO
+const formatCurrency = (number) => {
+  return number.toLocaleString("pt-BR", {
+    style: "currency",
+    currency: "BRL",
+  });
+};
+
+
 // FAZENDO REQUISIÇÃO NO ARQUIVO JSON DOS TENIS
 const getProducts = async () => {
   const response = await fetch("js/products.json");
@@ -23,7 +32,7 @@ const generateCard = async () => {
         <h4>${product.product_name}</h4>
         <h5>${product.product_model}</h5>
     </div>
-    <h6>R$ ${product.price}</h6>
+    <h6>${formatCurrency(product.price)}</h6>
     `;
 
     const listaProdutos = document.querySelector(".lista_produtos");
