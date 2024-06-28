@@ -116,6 +116,11 @@ main {
   flex-basis: 336px;
 }
 
+.card__produtos figure:hover {
+  border: 1px solid var(--brand_color);
+  cursor: pointer;
+}
+
 .card__produtos figure {
   width: 100%;
   height: 200px;
