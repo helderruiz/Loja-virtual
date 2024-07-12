@@ -1,3 +1,11 @@
+// PARTE DE DETALHES DO PRODUTO AO CLICAR
+const botaoVoltar = document.querySelector(".voltar");
+const sectionDetalhesProduto = document.querySelector(".produto__detalhes");
+const sectionProdutos = document.querySelector(".produtos");
+
+botaoVoltar.style.display = "none";
+sectionDetalhesProduto.style.display = "none";
+
 // FUNÇÃO PARA FORMATAR OS VALORES DOS TENIS NO PADRÃO BRASILEIRO
 const formatCurrency = (number) => {
   return number.toLocaleString("pt-BR", {
@@ -5,7 +13,6 @@ const formatCurrency = (number) => {
     currency: "BRL",
   });
 };
-
 
 // FAZENDO REQUISIÇÃO NO ARQUIVO JSON DOS TENIS
 const getProducts = async () => {
@@ -37,7 +44,25 @@ const generateCard = async () => {
 
     const listaProdutos = document.querySelector(".lista_produtos");
     listaProdutos.appendChild(card);
+
+    // EVENTO DE CLICK NO CARD PARA ABRIR PARTE DE DETALHES DO PRODUTO
+    card.addEventListener("click", () => {
+      // ao clicar no card, desaparece a pagina inicial de cads
+      sectionProdutos.style.display = "none";
+      //mostrar o botao voltar e pagina de detalhes do produto
+      botaoVoltar.style.display = "block";
+      sectionDetalhesProduto.style.display = "grid";
+    });
   });
 };
 
 generateCard();
+
+// CLICAR NO BOTAO VOLTAR
+botaoVoltar.addEventListener("click", () => {
+  //mostar novamente a tela inicial de cards
+  sectionProdutos.style.display = "flex";
+  //ocultar o botao voltar e pagina de detalhes do produto
+  botaoVoltar.style.display = "none";
+  sectionDetalhesProduto.style.display = "none";
+});
