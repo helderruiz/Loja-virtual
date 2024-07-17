@@ -138,6 +138,12 @@ main {
 .card__produtos_detalhes h4 {
   font-size: 18px;
   line-height: 28px;
+
+  /*ajuste de titulo grande */
+  white-space: nowrap;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .card__produtos_detalhes h5 {

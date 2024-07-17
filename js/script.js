@@ -18,7 +18,6 @@ const formatCurrency = (number) => {
 const getProducts = async () => {
   const response = await fetch("js/products.json");
   const data = await response.json();
-  //   console.log(data);
   return data;
 };
 
@@ -26,8 +25,8 @@ const generateCard = async () => {
   const products = await getProducts();
 
   products.map((product) => {
-    // console.log(product)
     let card = document.createElement("div");
+    card.id = product.id; // identificando cada produto pelo ID
     card.classList.add("card__produtos");
     card.innerHTML = `
     <figure>
@@ -46,12 +45,22 @@ const generateCard = async () => {
     listaProdutos.appendChild(card);
 
     // EVENTO DE CLICK NO CARD PARA ABRIR PARTE DE DETALHES DO PRODUTO
-    card.addEventListener("click", () => {
+    card.addEventListener("click", (e) => {
       // ao clicar no card, desaparece a pagina inicial de cads
       sectionProdutos.style.display = "none";
       //mostrar o botao voltar e pagina de detalhes do produto
       botaoVoltar.style.display = "block";
       sectionDetalhesProduto.style.display = "grid";
+
+      // IDENTIFICAR QUAL CARD FOI CLICADO
+      const cardClicado = e.currentTarget;
+      const idProduto = cardClicado.id;
+      const produtoClicado = products.find(
+        (product) => product.id == idProduto
+      );
+
+      // PREENCHER OS DADOS DE DETALHES DO PRODUTO
+      preencherDadosProduto(produtoClicado);
     });
   });
 };
@@ -66,3 +75,19 @@ botaoVoltar.addEventListener("click", () => {
   botaoVoltar.style.display = "none";
   sectionDetalhesProduto.style.display = "none";
 });
+
+const preencherDadosProduto = (product) => {
+  // preencher imagens
+  const images = document.querySelectorAll(
+    ".produto__detalhes_imagens figure img"
+  );
+  const imagesArray = Array.from(images);
+  imagesArray.map((image) => {
+    image.src = `./images/${product.image}`;
+  });
+
+  // preencher nome , model e preço
+  document.querySelector(".detalhes h4").innerHTML = product.product_name;
+  document.querySelector(".detalhes h5").innerHTML = product.product_model;
+  document.querySelector(".detalhes h6").innerHTML = formatCurrency(product.price);
+};
